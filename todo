@@ -14,7 +14,7 @@
 - [ ] AbstractOperand class(with isit function)
     - [x] Plus class [2015/01/25 01:01]
     - [x] Minus class [2015/01/25 01:07]
-    - [ ] Product class
+    - [x] Product class [2015/01/25 01:15]
     - [ ] Divide class
     - [ ] Power class
     - [ ] get_operand function

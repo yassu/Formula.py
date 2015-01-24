@@ -201,3 +201,21 @@ class Product(AbstractOperand):
 
     def compute(self, x, y):
         return x * y
+
+class Divide(AbstractOperand):
+    def __init__(self):
+        super(Divide, self).__init__('/')
+
+    def compute(self, x, y):
+        return x / y
+
+    @property
+    def priority(self):
+        return 6
+
+    @staticmethod
+    def isit(s):
+        if s == '/':
+            return Divide()
+        else:
+            return None

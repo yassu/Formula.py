@@ -4,7 +4,7 @@ from formula import (
         MathItem,
         AbstractNumber, Number, Variable, Pi, E, get_number,
         AbstractFunction, Sin, Cos, Tan, get_function,
-        AbstractOperand, Plus, Minus, Product
+        AbstractOperand, Plus, Minus, Product, Divide
     )
 from unittest import TestCase
 import math
@@ -198,3 +198,20 @@ class ProductTest(TestCase):
 
     def priority_test(self):
         assert(Product().priority == 6)
+
+class DivideTest(TestCase):
+    def create_test(self):
+        d = Divide()
+        assert(isinstance(d, AbstractOperand))
+
+    def isit_test1(self):
+        assert(Divide().isit('/') == Divide())
+
+    def isit_test2(self):
+        assert(Divide().isit('&') is None)
+
+    def compute_test(self):
+        assert(Divide().compute(179, 122) == 179/122)
+
+    def priority_test(self):
+        assert(Divide().priority == 6)
