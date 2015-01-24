@@ -4,7 +4,7 @@ from formula import (
         MathItem,
         AbstractNumber, Number, Variable, Pi, E, get_number,
         AbstractFunction, Sin, Cos, Tan, get_function,
-        AbstractOperand, Plus
+        AbstractOperand, Plus, Minus
     )
 from unittest import TestCase
 import math
@@ -163,3 +163,20 @@ class PlusTest(TestCase):
 
     def priority_test(self):
         assert(Plus().priority == 4)
+
+class MinusTest(TestCase):
+    def create_test(self):
+        m = Minus()
+        isinstance(m, AbstractOperand)
+
+    def isit_test1(self):
+        Minus.isit('-' == Minus())
+
+    def isit_test2(self):
+        Minus.isit('$' is None)
+
+    def compute_test(self):
+        assert(Minus().compute(154, 199) == 154 - 199)
+
+    def priority_test(self):
+        assert(Minus().priority == 4)

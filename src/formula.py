@@ -165,3 +165,20 @@ class Plus(AbstractOperand):
     @property
     def priority(self):
         return 4
+
+class Minus(AbstractOperand):
+    def __init__(self):
+        super(Minus, self).__init__('-')
+
+    def isit(s):
+        if s == '-':
+            return Minus()
+        else:
+            return None
+
+    def compute(self, x, y):
+        return x - y
+
+    @property
+    def priority(self):
+        return 4

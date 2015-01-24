@@ -6,17 +6,17 @@
     - [x] Variable class [2015/01/25 00:05]
     - [x] Pi, E class [2015/01/25 00:16]
     - [x] get_number functionn [2015/01/25 00:22]
-- [ ] AbstractFunction class(with isit function)
+- [x] AbstractFunction class(with isit function) [2015/01/25 01:01]
     - [x] Sin class [2015/01/25 00:38]
     - [x] Cos class [2015/01/25 00:44]
     - [x] Tan class [2015/01/25 00:48]
     - [x] get_function function [2015/01/25 00:51]
 - [ ] AbstractOperand class(with isit function)
-    - [ ] Plus class
-    - [ ] Minus class
+    - [x] Plus class [2015/01/25 01:01]
+    - [x] Minus class [2015/01/25 01:07]
     - [ ] Product class
     - [ ] Divide class
     - [ ] Power class
     - [ ] get_operand function
-- [ ] is_mathitem(s) function
+- [ ] get_mathitem(s) function
 - [ ] parse(s) function
