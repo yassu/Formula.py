@@ -46,3 +46,25 @@ class Variable(AbstractNumber):
             return Variable(s)
         else:
             return None
+
+class Pi(AbstractNumber):
+    def __init__(self):
+        super(Pi, self).__init__('3.141592')
+
+    @staticmethod
+    def isit(s):
+        if s == 'pi':
+            return Pi()
+        else:
+            return None
+
+class E(AbstractNumber):
+    def __init__(self):
+        super(E, self).__init__('2.718281')
+
+    @staticmethod
+    def isit(s):
+        if s == 'e':
+            return E()
+        else:
+            return None

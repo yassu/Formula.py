@@ -2,7 +2,7 @@ from sys import path
 path.append('src')
 from formula import (
         MathItem,
-        AbstractNumber, Number, Variable
+        AbstractNumber, Number, Variable, Pi, E
     )
 from unittest import TestCase
 
@@ -64,3 +64,25 @@ class VariableTest(TestCase):
 
     def isit_test(self):
         assert(Variable.isit('t1') == Variable('t1'))
+
+class PiTest(TestCase):
+    def instance_test(self):
+        pi = Pi()
+        assert(isinstance(pi, AbstractNumber))
+
+    def isit_test1(self):
+        assert(Pi.isit('pi') == Pi())
+
+    def isit_test2(self):
+        assert(Pi.isit('ab') is None)
+
+class ETest(TestCase):
+    def instance_test(self):
+        e = E()
+        assert(isinstance(e, AbstractNumber))
+
+    def isit_test1(self):
+        assert(E.isit('e') == E())
+
+    def isit_test2(self):
+        assert(E.isit('E') is None)
