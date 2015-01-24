@@ -87,7 +87,7 @@ def get_number(s):
 
 
 class AbstractFunction(MathItem):
-    def compute(x):
+    def compute(self, x):
         pass
 
 class Sin(AbstractFunction):
@@ -139,3 +139,29 @@ def get_function(s):
             return func
     else:
         return None
+
+class AbstractOperand(MathItem):
+    def compute(self, x, y):
+        pass
+
+    @property
+    def priority(self):
+        pass
+
+class Plus(AbstractOperand):
+    def __init__(self):
+        super(Plus, self).__init__('+')
+
+    @staticmethod
+    def isit(s):
+        if s == '+':
+            return Plus()
+        else:
+            return None
+
+    def compute(self, x, y):
+        return x + y
+
+    @property
+    def priority(self):
+        return 4

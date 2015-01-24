@@ -3,7 +3,8 @@ path.append('src')
 from formula import (
         MathItem,
         AbstractNumber, Number, Variable, Pi, E, get_number,
-        AbstractFunction, Sin, Cos, Tan, get_function
+        AbstractFunction, Sin, Cos, Tan, get_function,
+        AbstractOperand, Plus
     )
 from unittest import TestCase
 import math
@@ -145,3 +146,20 @@ def get_function_test2():
 
 def get_function_test3():
     assert(get_function('$$') is None)
+
+class PlusTest(TestCase):
+    def create_test(self):
+        p = Plus()
+        isinstance(p, AbstractOperand)
+
+    def isit_test1(self):
+        assert(Plus.isit('+') == Plus())
+
+    def isit_test2(self):
+        assert(Plus.isit('+12') is None)
+
+    def compute_test(self):
+        assert(Plus().compute(123, 144) == 123 + 144)
+
+    def priority_test(self):
+        assert(Plus().priority == 4)
