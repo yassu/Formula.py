@@ -1,6 +1,9 @@
 from sys import path
 path.append('src')
-from formula import MathItem
+from formula import (
+        MathItem,
+        AbstractNumber, Number, Variable
+    )
 from unittest import TestCase
 
 
@@ -40,3 +43,24 @@ class MathItemTest(TestCase):
         math1 = MathItem(2)
         math2 = MathItem(3)
         assert(math1 != math2)
+
+class NumberTest(TestCase):
+    def instance_test(self):
+        num = Number(1)
+        isinstance(num, AbstractNumber)
+        isinstance(num, MathItem)
+
+    def isit_test1(self):
+        assert(Number.isit('12') == Number(12))
+
+    def isit_test2(self):
+        assert(Number.isit('ab') is None)
+
+class VariableTest(TestCase):
+    def instance_test(self):
+        var = Variable('t1')
+        isinstance(var, AbstractNumber)
+        isinstance(var, MathItem)
+
+    def isit_test(self):
+        assert(Variable.isit('t1') == Variable('t1'))

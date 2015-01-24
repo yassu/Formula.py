@@ -1,3 +1,5 @@
+from re import compile as _re_compile
+
 class MathItem(object):
     def __init__(self, data):
         self._data = data
@@ -24,3 +26,23 @@ class MathItem(object):
 
     def __eq__(self, other):
         return isinstance(other, self.__class__) and self.data == other.data
+
+class AbstractNumber(MathItem):
+    pass
+
+class Number(AbstractNumber):
+    @staticmethod
+    def isit(s):
+        if s.isdigit():
+            return Number(int(s))
+        return None
+
+class Variable(AbstractNumber):
+    PATTERN = _re_compile(r'^[a-zA-Z]\d*$')
+    @staticmethod
+    def isit(s):
+        m = Variable.PATTERN.search(s)
+        if m:
+            return Variable(s)
+        else:
+            return None

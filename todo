@@ -1,2 +1,22 @@
 - [x] MathItem.__eq__, __ne__ [2015/01/24 23:36]
-- [ ] MathItem likely Cell
+- [x] MathItem likely Cell [2015/01/24 23:45]
+- [ ] AbstractNumber class
+    - [x] Number class [2015/01/25 00:05]
+        - [ ] repair isit function() for float
+    - [x] Variable class [2015/01/25 00:05]
+    - [ ] Pi, E class
+    - [ ] is_number functionn
+- [ ] AbstractFunction class(with isit function)
+    - [ ] Sin class
+    - [ ] Cos class
+    - [ ] Tan class
+    - [ ] is_function function
+- [ ] AbstractOperand class(with isit function)
+    - [ ] Plus class
+    - [ ] Minus class
+    - [ ] Product class
+    - [ ] Divide class
+    - [ ] Power class
+    - [ ] is_operand function
+- [ ] is_mathitem(s) function
+- [ ] parse(s) function
