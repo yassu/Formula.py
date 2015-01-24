@@ -5,6 +5,7 @@ from formula import (
         AbstractNumber, Number, Variable, Pi, E, get_number,
         AbstractFunction, Sin, Cos, Tan, get_function,
         AbstractOperand, Plus, Minus, Product, Divide, Power, get_operand,
+        get_mathitem
     )
 from unittest import TestCase
 import math
@@ -238,3 +239,12 @@ def get_operand_test1():
 
 def get_operand_test2():
     assert(get_operand('-') == Minus())
+
+def get_mathitem_test1():
+    assert(get_mathitem('+') == Plus())
+
+def get_mathitem_test2():
+    assert(get_mathitem('12') == Number(12))
+
+def get_mathitem_test3():
+    assert(get_mathitem('$') is None)

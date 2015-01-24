@@ -245,3 +245,18 @@ def get_operand(s):
             return ope
 
     return None
+
+def get_mathitem(s):
+    num_obj = get_number(s)
+    if num_obj:
+        return num_obj
+
+    func_obj = get_function(s)
+    if func_obj:
+        return func_obj
+
+    ope_obj = get_operand(s)
+    if ope_obj:
+        return ope_obj
+
+    return None
