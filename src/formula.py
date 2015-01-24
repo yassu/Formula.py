@@ -219,3 +219,21 @@ class Divide(AbstractOperand):
             return Divide()
         else:
             return None
+
+class Power(AbstractOperand):
+    def __init__(self):
+        super(Power, self).__init__('^')
+
+    def compute(self, x, y):
+        return x ** y
+
+    @property
+    def priority(self):
+        return 8
+
+    @staticmethod
+    def isit(s):
+        if s == '^':
+            return Power()
+        else:
+            return None
