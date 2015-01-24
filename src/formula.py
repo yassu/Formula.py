@@ -24,6 +24,9 @@ class MathItem(object):
     def __getitem__(self, ind):
         return self._afters[ind]
 
+    def __repr__(self):
+        return '{class}<{data}>'.format(class=self.__class__, data=self.data)
+
     def __eq__(self, other):
         return isinstance(other, self.__class__) and self.data == other.data
 

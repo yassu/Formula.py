@@ -4,7 +4,7 @@
     - [x] Number class [2015/01/25 00:05]
         - [ ] repair isit function() for float
     - [x] Variable class [2015/01/25 00:05]
-    - [ ] Pi, E class
+    - [x] Pi, E class [2015/01/25 00:16]
     - [ ] is_number functionn
 - [ ] AbstractFunction class(with isit function)
     - [ ] Sin class
