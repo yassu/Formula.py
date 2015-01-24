@@ -25,7 +25,7 @@ class MathItem(object):
         return self._afters[ind]
 
     def __repr__(self):
-        return '{class}<{data}>'.format(class=self.__class__, data=self.data)
+        return '{}<{}>'.format(self.__class__, self.data)
 
     def __eq__(self, other):
         return isinstance(other, self.__class__) and self.data == other.data
@@ -71,3 +71,11 @@ class E(AbstractNumber):
             return E()
         else:
             return None
+
+ALL_NUMBERS = (Number, Variable, Pi, E)
+def get_number(s):
+    for num in ALL_NUMBERS:
+        if num.isit(s):
+            return num.isit(s)
+
+    return None

@@ -2,7 +2,7 @@ from sys import path
 path.append('src')
 from formula import (
         MathItem,
-        AbstractNumber, Number, Variable, Pi, E
+        AbstractNumber, Number, Variable, Pi, E, get_number
     )
 from unittest import TestCase
 
@@ -86,3 +86,9 @@ class ETest(TestCase):
 
     def isit_test2(self):
         assert(E.isit('E') is None)
+
+def get_number_test1():
+    assert(get_number('pi') == Pi())
+
+def get_number_test2():
+    assert(get_number('12') == Number(12))
