@@ -103,3 +103,17 @@ class Sin(AbstractFunction):
 
     def compute(self, x):
         return math.sin(x)
+
+class Cos(AbstractFunction):
+    def __init__(self):
+        super(Cos, self).__init__('cos')
+
+    @staticmethod
+    def isit(s):
+        if s == 'cos':
+            return Cos()
+        else:
+            return None
+
+    def compute(self, x):
+        return math.cos(x)
