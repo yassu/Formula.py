@@ -2,9 +2,11 @@ from sys import path
 path.append('src')
 from formula import (
         MathItem,
-        AbstractNumber, Number, Variable, Pi, E, get_number
+        AbstractNumber, Number, Variable, Pi, E, get_number,
+        AbstractFunction, Sin
     )
 from unittest import TestCase
+import math
 
 
 class MathItemTest(TestCase):
@@ -92,3 +94,17 @@ def get_number_test1():
 
 def get_number_test2():
     assert(get_number('12') == Number(12))
+
+class SinTest(TestCase):
+    def create_test(self):
+        sin = Sin()
+        assert(isinstance(sin, AbstractFunction))
+
+    def compute_test(self):
+        assert(math.sin(math.pi/10) == Sin().compute(math.pi/10))
+
+    def isit_test1(self):
+        assert(Sin.isit('sin') == Sin())
+
+    def isit_test2(self):
+        assert(Sin.isit('cos') is None)

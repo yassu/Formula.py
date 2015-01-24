@@ -7,7 +7,7 @@
     - [x] Pi, E class [2015/01/25 00:16]
     - [x] get_number functionn [2015/01/25 00:22]
 - [ ] AbstractFunction class(with isit function)
-    - [ ] Sin class
+    - [x] Sin class [2015/01/25 00:38]
     - [ ] Cos class
     - [ ] Tan class
     - [ ] get_function function

@@ -1,3 +1,4 @@
+import math
 from re import compile as _re_compile
 
 class MathItem(object):
@@ -20,6 +21,10 @@ class MathItem(object):
     def append(self, after):
         self._afters.append(after)
         after._set_before(self)
+
+    @staticmethod
+    def isit(s):
+        pass
 
     def __getitem__(self, ind):
         return self._afters[ind]
@@ -79,3 +84,22 @@ def get_number(s):
             return num.isit(s)
 
     return None
+
+
+class AbstractFunction(MathItem):
+    def compute(x):
+        pass
+
+class Sin(AbstractFunction):
+    def __init__(self):
+        super(Sin, self).__init__('sin')
+
+    @staticmethod
+    def isit(s):
+        if s == 'sin':
+            return Sin()
+        else:
+            return None
+
+    def compute(self, x):
+        return math.sin(x)
