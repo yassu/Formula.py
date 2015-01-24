@@ -4,7 +4,7 @@ from formula import (
         MathItem,
         AbstractNumber, Number, Variable, Pi, E, get_number,
         AbstractFunction, Sin, Cos, Tan, get_function,
-        AbstractOperand, Plus, Minus
+        AbstractOperand, Plus, Minus, Product
     )
 from unittest import TestCase
 import math
@@ -180,3 +180,21 @@ class MinusTest(TestCase):
 
     def priority_test(self):
         assert(Minus().priority == 4)
+
+
+class ProductTest(TestCase):
+    def create_test(self):
+        p = Product()
+        assert(isinstance(p, AbstractOperand))
+
+    def isit_test1(self):
+        assert(Product.isit('*') == Product())
+
+    def isit_test2(self):
+        assert(Product.isit('+a') is None)
+
+    def compute_test(self):
+        assert(Product().compute(12, 34) == 12 * 34)
+
+    def priority_test(self):
+        assert(Product().priority == 6)

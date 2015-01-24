@@ -170,6 +170,7 @@ class Minus(AbstractOperand):
     def __init__(self):
         super(Minus, self).__init__('-')
 
+    @staticmethod
     def isit(s):
         if s == '-':
             return Minus()
@@ -182,3 +183,21 @@ class Minus(AbstractOperand):
     @property
     def priority(self):
         return 4
+
+class Product(AbstractOperand):
+    def __init__(self):
+        super(Product, self).__init__('*')
+
+    @staticmethod
+    def isit(s):
+        if s == '*':
+            return Product()
+        else:
+            return None
+
+    @property
+    def priority(self):
+        return 6
+
+    def compute(self, x, y):
+        return x * y
