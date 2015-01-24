@@ -1,2 +1,2 @@
-- [ ] MathItem(Cell) element
-- [ ] MathItem by list(like inheritance)
+- [x] MathItem.__eq__, __ne__ [2015/01/24 23:36]
+- [ ] MathItem likely Cell
