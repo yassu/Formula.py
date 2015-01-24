@@ -17,6 +17,6 @@
     - [x] Product class [2015/01/25 01:15]
     - [x] Divide class [2015/01/25 01:25]
     - [x] Power class [2015/01/25 01:33]
-    - [ ] get_operand function
+    - [x] get_operand function [2015/01/25 01:42]
 - [ ] get_mathitem(s) function
 - [ ] parse(s) function

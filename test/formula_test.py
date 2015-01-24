@@ -4,7 +4,7 @@ from formula import (
         MathItem,
         AbstractNumber, Number, Variable, Pi, E, get_number,
         AbstractFunction, Sin, Cos, Tan, get_function,
-        AbstractOperand, Plus, Minus, Product, Divide, Power
+        AbstractOperand, Plus, Minus, Product, Divide, Power, get_operand,
     )
 from unittest import TestCase
 import math
@@ -232,3 +232,9 @@ class PowerTest(TestCase):
 
     def priority_test(self):
         assert(Power().priority == 8)
+
+def get_operand_test1():
+    assert(get_operand('+') == Plus())
+
+def get_operand_test2():
+    assert(get_operand('-') == Minus())

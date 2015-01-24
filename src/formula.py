@@ -237,3 +237,11 @@ class Power(AbstractOperand):
             return Power()
         else:
             return None
+
+ALL_OPERANDS = (Plus(), Minus(), Product(), Divide(), Power())
+def get_operand(s):
+    for ope in ALL_OPERANDS:
+        if ope.isit(s):
+            return ope
+
+    return None
