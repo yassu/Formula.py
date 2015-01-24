@@ -117,3 +117,25 @@ class Cos(AbstractFunction):
 
     def compute(self, x):
         return math.cos(x)
+
+class Tan(AbstractFunction):
+    def __init__(self):
+        super(Tan, self).__init__('tan')
+
+    @staticmethod
+    def isit(s):
+        if s == 'tan':
+            return Tan()
+        else:
+            return None
+
+    def compute(self, x):
+        return math.tan(x)
+
+ALL_FUNCTIONS = (Sin(), Cos(), Tan())
+def get_function(s):
+    for func in ALL_FUNCTIONS:
+        if func.isit(s):
+            return func
+    else:
+        return None

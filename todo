@@ -9,8 +9,8 @@
 - [ ] AbstractFunction class(with isit function)
     - [x] Sin class [2015/01/25 00:38]
     - [x] Cos class [2015/01/25 00:44]
-    - [ ] Tan class
-    - [ ] get_function function
+    - [x] Tan class [2015/01/25 00:48]
+    - [x] get_function function [2015/01/25 00:51]
 - [ ] AbstractOperand class(with isit function)
     - [ ] Plus class
     - [ ] Minus class

@@ -3,7 +3,7 @@ path.append('src')
 from formula import (
         MathItem,
         AbstractNumber, Number, Variable, Pi, E, get_number,
-        AbstractFunction, Sin, Cos
+        AbstractFunction, Sin, Cos, Tan, get_function
     )
 from unittest import TestCase
 import math
@@ -122,3 +122,26 @@ class CosTest(TestCase):
 
     def isit_test2(self):
         assert(Cos.isit('sin') is None)
+
+class TanTest(TestCase):
+    def create_test(self):
+        tan = Tan()
+        assert(isinstance(tan, AbstractFunction))
+
+    def compute_test(self):
+        assert(Tan().compute(math.pi/10) == math.tan(math.pi/10))
+
+    def isit_test1(self):
+        assert(Tan.isit('tan') == Tan())
+
+    def isit_test2(self):
+        assert(Tan.isit('cos') is None)
+
+def get_function_test1():
+    assert(get_function('sin') == Sin())
+
+def get_function_test2():
+    assert(get_function('cos') == Cos())
+
+def get_function_test3():
+    assert(get_function('$$') is None)
