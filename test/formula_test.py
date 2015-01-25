@@ -5,7 +5,7 @@ from formula import (
         AbstractNumber, Number, Variable, Pi, E, get_number,
         AbstractFunction, Sin, Cos, Tan, get_function,
         AbstractOperand, Plus, Minus, Product, Divide, Power, get_operand,
-        get_mathitem
+        get_mathitem, parse_from_str
     )
 from unittest import TestCase
 import math
@@ -248,3 +248,38 @@ def get_mathitem_test2():
 
 def get_mathitem_test3():
     assert(get_mathitem('$') is None)
+
+def parse_from_str_test1():
+    assert(parse_from_str('1') == Number(1))
+
+def parse_from_str_test2():
+    math = Plus()
+    math.append(Number(1))
+    math.append(Number(2))
+    assert(parse_from_str('1 + 2') == math)
+
+def parse_from_str_test3():
+    math = Plus()
+    math.append(Number(1))
+    math.append(Number(2))
+    assert(parse_from_str('(1) + (2)') == math)
+
+def parse_from_str_test4():
+    math = Plus()
+    math.append(Number(1))
+    math.append(Number(2))
+    assert(parse_from_str('(1 + 2)') == math)
+
+def parse_from_str_test5():
+    math00 = Power()
+    math10 = Plus()
+    math11 = Number(5)
+    math21 = Number(1)
+    math22 = Number(2)
+
+    math00.append(math10)
+    math00.append(math11)
+    math10.append(math21)
+    math10.append(math22)
+
+    assert(parse_from_str('(1 + 2)^3') == math00)

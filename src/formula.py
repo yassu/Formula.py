@@ -260,3 +260,44 @@ def get_mathitem(s):
         return ope_obj
 
     return None
+
+
+def parse_from_str(s):
+    def _parse(s):
+        math_obj = get_mathitem(s)
+        if math_obj:
+            return math_obj
+
+        if s.startswith('(') and s.endswith(')') and parse_from_str(s[1:-1]):
+            return parse_from_str(s[1:-1])
+
+        if s.startswith('(') and s.endswith(')') and parse_from_str(s[1:-1]):
+            return parse_from_str(S[1:-1])
+        if s.startswith('(') and s.endswith(')') and get_mathitem(s[1:-1]):
+            return get_mathitem(s[1:-1])
+
+        brace_depth = 0
+        ope_inds = []
+
+        # define ope_inds
+        for i, c in enumerate(s):
+            if c == '(':
+                brace_depth += 1
+            elif c == ')':
+                brace_depth -= 1
+            elif brace_depth == 0 and get_operand(c) is not None:
+                print(c)
+                ope_inds.append(i)
+
+        if ope_inds != []:
+            ope_ind = max(ope_inds,
+                    key=lambda i:get_operand(s[i]).priority)
+            ope = get_operand(s[ope_ind])
+            left = _parse(s[:ope_ind])
+            right = _parse(s[ope_ind+1:])
+            ope.append(left)
+            ope.append(right)
+            return ope
+
+    s = s.replace(' ', '')
+    return _parse(s)
