@@ -271,11 +271,6 @@ def parse_from_str(s):
         if s.startswith('(') and s.endswith(')') and parse_from_str(s[1:-1]):
             return parse_from_str(s[1:-1])
 
-        if s.startswith('(') and s.endswith(')') and parse_from_str(s[1:-1]):
-            return parse_from_str(S[1:-1])
-        if s.startswith('(') and s.endswith(')') and get_mathitem(s[1:-1]):
-            return get_mathitem(s[1:-1])
-
         brace_depth = 0
         ope_inds = []
 
