@@ -191,7 +191,7 @@ class MinusTest(TestCase):
         isinstance(m, AbstractOperand)
 
     def isit_test1(self):
-        Minus.isit('-' == Minus())
+        assert(Minus.isit('-') == Minus())
 
     def isit_test2(self):
         Minus.isit('$' is None)
