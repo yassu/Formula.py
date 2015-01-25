@@ -33,7 +33,7 @@ class MathItem(object):
         return '{data}<{afters}>'.format(data=self._data, afters=self._afters)
 
     def __eq__(self, other):
-        if not isinstance(other, self.__class__) and self.data == other.data:
+        if not (isinstance(other, self.__class__) and self.data == other.data):
             return False
 
         return self._afters == other._afters
