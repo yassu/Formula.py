@@ -38,15 +38,35 @@ class MathItemTest(TestCase):
         assert(math[0] == math2)
         assert(math2.before == math)
 
+    def repr_test(self):
+        math = MathItem(Sin())
+        math10 = MathItem(Cos())
+        math11 = MathItem(Tan())
+        math.append(math10)
+        math.append(math11)
+
+        assert(repr(math) == 'sin<[]><[cos<[]><[]>, tan<[]><[]>]>')
+
     def eq_test(self):
         math1 = MathItem(2)
         math2 = MathItem(2)
         assert(math1 == math2)
 
-    def neq_test(self):
+    def eq_test2(self):
         math1 = MathItem(2)
         math2 = MathItem(3)
         assert(math1 != math2)
+
+    def eq_test3(self):
+        math01 = MathItem(2)
+        math02 = MathItem(3)
+        math01.append(math02)
+
+        math11 = MathItem(2)
+        math12 = MathItem(1)
+
+        assert(math01 != math11)
+
 
 class NumberTest(TestCase):
     def instance_test(self):
@@ -270,16 +290,15 @@ def parse_from_str_test4():
     math.append(Number(2))
     assert(parse_from_str('(1 + 2)') == math)
 
-def parse_from_str_test5():
-    math00 = Power()
-    math10 = Plus()
-    math11 = Number(5)
-    math21 = Number(1)
-    math22 = Number(2)
-
-    math00.append(math10)
-    math00.append(math11)
-    math10.append(math21)
-    math10.append(math22)
-
-    assert(parse_from_str('(1 + 2)^3') == math00)
+# def parse_from_str_test5():
+#     math00 = Power()
+#     math10 = Plus()
+#     math11 = Number(5)
+#     math21 = Number(1)
+#     math22 = Number(2)
+#
+#     math00.append(math10)
+#     math00.append(math11)
+#     math10.append(math21)
+#     math10.append(math22)
+#     assert(parse_from_str('(1 + 2)^3') == math00)

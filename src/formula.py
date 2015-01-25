@@ -30,10 +30,14 @@ class MathItem(object):
         return self._afters[ind]
 
     def __repr__(self):
-        return '{}<{}>'.format(self.__class__, self.data)
+        return '{data}<{afters}>'.format(data=self._data, afters=self._afters)
 
     def __eq__(self, other):
-        return isinstance(other, self.__class__) and self.data == other.data
+        if not isinstance(other, self.__class__) and self.data == other.data:
+            return False
+
+        return self._afters == other._afters
+
 
 class AbstractNumber(MathItem):
     pass
@@ -281,7 +285,6 @@ def parse_from_str(s):
             elif c == ')':
                 brace_depth -= 1
             elif brace_depth == 0 and get_operand(c) is not None:
-                print(c)
                 ope_inds.append(i)
 
         if ope_inds != []:
