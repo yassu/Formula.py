@@ -280,7 +280,7 @@ def parse_from_str(s):
         return mathitem
 
     # case: s is func(arg) format
-    arg_start_index = s.index('(')
+    arg_start_index = s.find('(')
     func = get_function(s[:arg_start_index])
     print(func)
     if arg_start_index != -1 and s.endswith(')') and func:
