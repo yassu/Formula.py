@@ -272,3 +272,21 @@ def get_mathitem(s):
         return ope_obj
 
     return None
+
+def parse_from_str(s):
+    # case: s is just one mathitem.
+    mathitem = get_mathitem(s)
+    if mathitem is not None:
+        return mathitem
+
+    # case: s is func(arg) format
+    arg_start_index = s.index('(')
+    func = get_function(s[:arg_start_index])
+    print(func)
+    if arg_start_index != -1 and s.endswith(')') and func:
+        math = func
+        math1 = Bracket()
+        math2 = parse_from_str(s[arg_start_index + 1: -1])
+        math.append(math1)
+        math1.append(math2)
+        return math
