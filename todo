@@ -19,5 +19,6 @@
     - [x] Power class [2015/01/25 01:33]
     - [x] get_operand function [2015/01/25 01:42]
 - [x] get_mathitem(s) function [2015/01/25 01:50]
+- [ ] Bracket Instance
 - [ ] MathItem.extend(a) method
 - [ ] parse_from_str(s) function

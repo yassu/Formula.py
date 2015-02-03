@@ -2,10 +2,11 @@ from sys import path
 path.append('src')
 from formula import (
         MathItem,
+        Bracket,
         AbstractNumber, Number, Variable, Pi, E, get_number,
         AbstractFunction, Sin, Cos, Tan, get_function,
         AbstractOperand, Plus, Minus, Product, Divide, Power, get_operand,
-        get_mathitem, parse_from_str
+        get_mathitem,
     )
 from unittest import TestCase
 import math
@@ -66,6 +67,13 @@ class MathItemTest(TestCase):
         math12 = MathItem(1)
 
         assert(math01 != math11)
+
+class BracketItemTest(TestCase):
+    def create_test(self):
+        Bracket()
+
+    def isit_test1(self):
+        assert(Bracket.isit('()') is None)
 
 
 class NumberTest(TestCase):
@@ -269,27 +277,29 @@ def get_mathitem_test2():
 def get_mathitem_test3():
     assert(get_mathitem('$') is None)
 
-def parse_from_str_test1():
-    assert(parse_from_str('1') == Number(1))
-
-def parse_from_str_test2():
-    math = Plus()
-    math.append(Number(1))
-    math.append(Number(2))
-    assert(parse_from_str('1 + 2') == math)
-
-def parse_from_str_test3():
-    math = Plus()
-    math.append(Number(1))
-    math.append(Number(2))
-    assert(parse_from_str('(1) + (2)') == math)
-
-def parse_from_str_test4():
-    math = Plus()
-    math.append(Number(1))
-    math.append(Number(2))
-    assert(parse_from_str('(1 + 2)') == math)
-
+# def parse_from_str_test1():
+#     assert(parse_from_str('1') == Number(1))
+#
+# def parse_from_str_test2():
+#     math = Plus()
+#     math.append(Number(1))
+#     math.append(Number(2))
+#     assert(parse_from_str('1 + 2') == math)
+#
+# def parse_from_str_test3():
+#     math = Plus()
+#     math.append(Number(1))
+#     math.append(Number(2))
+#     _math = parse_from_str('(1) + (2)')
+#     print(list(math))
+#     assert(parse_from_str('(1) + (2)') == math)
+#
+# def parse_from_str_test4():
+#     math = Plus()
+#     math.append(Number(1))
+#     math.append(Number(2))
+#     assert(parse_from_str('(1 + 2)') == math)
+#
 # def parse_from_str_test5():
 #     math00 = Power()
 #     math10 = Plus()
