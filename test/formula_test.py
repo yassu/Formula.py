@@ -125,6 +125,13 @@ def get_number_test1():
 def get_number_test2():
     assert(get_number('12') == Number(12))
 
+class AbstractFunctionTest(TestCase):
+    """ todo:
+    @raise.test
+    def create_exception_test(self):
+        AbstractFunction('s')
+    """
+
 class SinTest(TestCase):
     def create_test(self):
         sin = Sin()

@@ -98,7 +98,16 @@ def get_number(s):
     return None
 
 
+class FunctionDataLengthException(TypeError):
+    pass
+
 class AbstractFunction(MathItem):
+    def __init__(self, s):
+        if len(s) < 2:
+            raise FunctionDataLengthException('length of data of function is'
+                'grater than 1.')
+        super(AbstractFunction, self).__init__(s)
+
     def compute(self, x):
         pass
 
