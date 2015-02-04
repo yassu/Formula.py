@@ -318,3 +318,23 @@ def parse_from_str_test4():
     math10.append(math21)
     math10.append(math22)
     assert(parse_from_str('(1+1)') == math00)
+
+def parse_from_str_test5():
+    math00 = Bracket()
+    math10 = Plus()
+    math21 = Number(1)
+    math22 = Number(1)
+    math00.append(math10)
+    math10.append(math21)
+    math10.append(math22)
+    assert(parse_from_str('(1 + 1)') == math00)
+
+def parse_from_str_test6():
+    math00 = Bracket()
+    math10 = Plus()
+    math21 = Number(1)
+    math22 = Number(1)
+    math00.append(math10)
+    math10.append(math21)
+    math10.append(math22)
+    assert(parse_from_str('(1 +\t 1)') == math00)

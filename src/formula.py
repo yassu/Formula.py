@@ -274,7 +274,7 @@ def get_mathitem(s):
 
     return None
 
-def parse_from_str(s):
+def _parse_from_str(s):
     # case: s is just one mathitem.
     mathitem = get_mathitem(s)
     if mathitem is not None:
@@ -291,9 +291,7 @@ def parse_from_str(s):
             break
     else:
         math = Bracket()
-        print(s[1:-1])
-        math.append(parse_from_str(s[1:-1]))
-        print('Case: C')
+        math.append(_parse_from_str(s[1:-1]))
         return math
 
     # case: mathobj op mathobj ... format
@@ -310,8 +308,8 @@ def parse_from_str(s):
     if opes:
         ope, ope_index = min(opes, key=lambda ope_a: ope_a[0].priority)
         math = ope
-        left = parse_from_str(s[:ope_index])
-        right = parse_from_str(s[ope_index + 1:])
+        left = _parse_from_str(s[:ope_index])
+        right = _parse_from_str(s[ope_index + 1:])
         math.append(left)
         math.append(right)
         return math
@@ -322,7 +320,13 @@ def parse_from_str(s):
     if arg_start_index != -1 and s.endswith(')') and func:
         math = func
         math1 = Bracket()
-        math2 = parse_from_str(s[arg_start_index + 1: -1])
+        math2 = _parse_from_str(s[arg_start_index + 1: -1])
         math.append(math1)
         math1.append(math2)
         return math
+
+def parse_from_str(s):
+    dummies = (' ', '\t', '\r')
+    for dummy in dummies:
+        s = s.replace(dummy, '')
+    return _parse_from_str(s)
