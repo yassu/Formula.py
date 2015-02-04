@@ -157,7 +157,7 @@ class AbstractFunctionTest(TestCase):
 
     def str_test(self):
         math = parse_from_str('sin(pi)')
-        assert(str(math) == 'sin(pi)')
+        assert(str(math) == "sin(\u03c0)")
 
 
 class SinTest(TestCase):

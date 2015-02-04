@@ -1,0 +1,2 @@
+def symplify(math):
+    pass
