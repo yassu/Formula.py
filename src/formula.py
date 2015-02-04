@@ -280,6 +280,22 @@ def parse_from_str(s):
     if mathitem is not None:
         return mathitem
 
+    # case: (mathitem1 mathitem2 ... ) format
+    lv = 0
+    for i, c in enumerate(s):
+        if c == '(':
+            lv += 1
+        elif c == ')':
+            lv -= 1
+        if i != len(s) -1 and lv == 0:
+            break
+    else:
+        math = Bracket()
+        print(s[1:-1])
+        math.append(parse_from_str(s[1:-1]))
+        print('Case: C')
+        return math
+
     # case: mathobj op mathobj ... format
     lv = 0
     opes = []   # list of (ope, ope_index)
@@ -293,7 +309,6 @@ def parse_from_str(s):
             opes.append((ope, i))
     if opes:
         ope, ope_index = min(opes, key=lambda ope_a: ope_a[0].priority)
-        print('ope: {}'.format(ope))
         math = ope
         left = parse_from_str(s[:ope_index])
         right = parse_from_str(s[ope_index + 1:])

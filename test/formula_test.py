@@ -309,12 +309,12 @@ def parse_from_str_test6():
     math11.append(math21)
     assert(parse_from_str('1+2*3') == math00)
 
-# def parse_from_str_test4():
-#     math00 = Bracket()
-#     math10 = Plus()
-#     math21 = Number(1)
-#     math22 = Number(2)
-#     math00.append(math10)
-#     math10.append(math21)
-#     math10.append(math22)
-#     assert(parse_from_str('(1 + 1)') == math00)
+def parse_from_str_test4():
+    math00 = Bracket()
+    math10 = Plus()
+    math21 = Number(1)
+    math22 = Number(1)
+    math00.append(math10)
+    math10.append(math21)
+    math10.append(math22)
+    assert(parse_from_str('(1+1)') == math00)
