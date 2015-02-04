@@ -161,7 +161,14 @@ def get_function(s):
     else:
         return None
 
+class OperandDataLengthException(TypeError):
+    pass
+
 class AbstractOperand(MathItem):
+    def __init__(self, s):
+        if len(s) != 1:
+            raise OperandDataLengthException('length of data of operand is 1.')
+        super(AbstractOperand, self).__init__(s)
     def compute(self, x, y):
         pass
 

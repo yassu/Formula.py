@@ -7,6 +7,7 @@ from formula import (
         AbstractFunction, Sin, Cos, Tan, get_function,
             FunctionDataLengthException,
         AbstractOperand, Plus, Minus, Product, Divide, Power, get_operand,
+            OperandDataLengthException,
         get_mathitem,
     )
 from unittest import TestCase
@@ -182,6 +183,11 @@ def get_function_test2():
 
 def get_function_test3():
     assert(get_function('$$') is None)
+
+class AbstractOperandTest(TestCase):
+    @raises(OperandDataLengthException)
+    def create_exception_test(self):
+        AbstractOperand('**')
 
 class PlusTest(TestCase):
     def create_test(self):
