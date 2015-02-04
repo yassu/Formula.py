@@ -2,7 +2,9 @@ import math
 from re import compile as _re_compile
 from copy import deepcopy
 
+
 class MathItem(object):
+
     def __init__(self, data):
         self._data = data
         self._before = None
@@ -39,7 +41,9 @@ class MathItem(object):
 
         return self._afters == other._afters
 
+
 class Bracket(MathItem):
+
     def __init__(self):
         super(Bracket, self).__init__('()')
 
@@ -48,18 +52,23 @@ class Bracket(MathItem):
         """ not create bracket object """
         return None
 
+
 class AbstractNumber(MathItem):
     pass
 
+
 class Number(AbstractNumber):
+
     @staticmethod
     def isit(s):
         if s.isdigit():
             return Number(int(s))
         return None
 
+
 class Variable(AbstractNumber):
     PATTERN = _re_compile(r'^[a-zA-Z]\d*$')
+
     @staticmethod
     def isit(s):
         m = Variable.PATTERN.search(s)
@@ -68,7 +77,9 @@ class Variable(AbstractNumber):
         else:
             return None
 
+
 class Pi(AbstractNumber):
+
     def __init__(self):
         super(Pi, self).__init__('3.141592')
 
@@ -79,7 +90,9 @@ class Pi(AbstractNumber):
         else:
             return None
 
+
 class E(AbstractNumber):
+
     def __init__(self):
         super(E, self).__init__('2.718281')
 
@@ -91,6 +104,8 @@ class E(AbstractNumber):
             return None
 
 ALL_NUMBERS = (Number, Variable, Pi, E)
+
+
 def get_number(s):
     for num in ALL_NUMBERS:
         if num.isit(s):
@@ -102,17 +117,21 @@ def get_number(s):
 class FunctionDataLengthException(TypeError):
     pass
 
+
 class AbstractFunction(MathItem):
+
     def __init__(self, s):
         if len(s) < 2:
             raise FunctionDataLengthException('length of data of function is'
-                'grater than 1.')
+                                              'grater than 1.')
         super(AbstractFunction, self).__init__(s)
 
     def compute(self, x):
         pass
 
+
 class Sin(AbstractFunction):
+
     def __init__(self):
         super(Sin, self).__init__('sin')
 
@@ -126,7 +145,9 @@ class Sin(AbstractFunction):
     def compute(self, x):
         return math.sin(x)
 
+
 class Cos(AbstractFunction):
+
     def __init__(self):
         super(Cos, self).__init__('cos')
 
@@ -140,7 +161,9 @@ class Cos(AbstractFunction):
     def compute(self, x):
         return math.cos(x)
 
+
 class Tan(AbstractFunction):
+
     def __init__(self):
         super(Tan, self).__init__('tan')
 
@@ -155,6 +178,8 @@ class Tan(AbstractFunction):
         return math.tan(x)
 
 ALL_FUNCTIONS = (Sin(), Cos(), Tan())
+
+
 def get_function(s):
     for func in ALL_FUNCTIONS:
         if func.isit(s):
@@ -162,14 +187,18 @@ def get_function(s):
     else:
         return None
 
+
 class OperandDataLengthException(TypeError):
     pass
 
+
 class AbstractOperand(MathItem):
+
     def __init__(self, s):
         if len(s) != 1:
             raise OperandDataLengthException('length of data of operand is 1.')
         super(AbstractOperand, self).__init__(s)
+
     def compute(self, x, y):
         pass
 
@@ -177,7 +206,9 @@ class AbstractOperand(MathItem):
     def priority(self):
         pass
 
+
 class Plus(AbstractOperand):
+
     def __init__(self):
         super(Plus, self).__init__('+')
 
@@ -195,7 +226,9 @@ class Plus(AbstractOperand):
     def priority(self):
         return 4
 
+
 class Minus(AbstractOperand):
+
     def __init__(self):
         super(Minus, self).__init__('-')
 
@@ -213,7 +246,9 @@ class Minus(AbstractOperand):
     def priority(self):
         return 4
 
+
 class Product(AbstractOperand):
+
     def __init__(self):
         super(Product, self).__init__('*')
 
@@ -231,7 +266,9 @@ class Product(AbstractOperand):
     def compute(self, x, y):
         return x * y
 
+
 class Divide(AbstractOperand):
+
     def __init__(self):
         super(Divide, self).__init__('/')
 
@@ -249,7 +286,9 @@ class Divide(AbstractOperand):
         else:
             return None
 
+
 class Power(AbstractOperand):
+
     def __init__(self):
         super(Power, self).__init__('^')
 
@@ -268,12 +307,15 @@ class Power(AbstractOperand):
             return None
 
 ALL_OPERANDS = (Plus(), Minus(), Product(), Divide(), Power())
+
+
 def get_operand(s):
     for ope in ALL_OPERANDS:
         if ope.isit(s):
             return deepcopy(ope)
 
     return None
+
 
 def get_mathitem(s):
     num_obj = get_number(s)
@@ -290,6 +332,7 @@ def get_mathitem(s):
 
     return None
 
+
 def _parse_from_str(s):
     # case: s is just one mathitem.
     mathitem = get_mathitem(s)
@@ -303,7 +346,7 @@ def _parse_from_str(s):
             lv += 1
         elif c == ')':
             lv -= 1
-        if i != len(s) -1 and lv == 0:
+        if i != len(s) - 1 and lv == 0:
             break
     else:
         math = Bracket()
@@ -337,6 +380,7 @@ def _parse_from_str(s):
         math = func
         math.append(_parse_from_str(s[arg_start_index:]))
         return math
+
 
 def parse_from_str(s):
     dummies = (' ', '\t', '\r')
