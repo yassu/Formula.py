@@ -183,7 +183,7 @@ ALL_FUNCTIONS = (Sin(), Cos(), Tan())
 def get_function(s):
     for func in ALL_FUNCTIONS:
         if func.isit(s):
-            return func
+            return deepcopy(func)
     else:
         return None
 
@@ -336,22 +336,25 @@ def get_mathitem(s):
 def _parse_from_str(s):
     # case: s is just one mathitem.
     mathitem = get_mathitem(s)
+    if mathitem is not None and not isinstance(mathitem, AbstractNumber):
+        raise ValueError('Leaf is only instance of AbstractNumber.')
     if mathitem is not None:
         return mathitem
 
     # case: (mathitems) format
     lv = 0
-    for i, c in enumerate(s):
-        if c == '(':
-            lv += 1
-        elif c == ')':
-            lv -= 1
-        if i != len(s) - 1 and lv == 0:
-            break
-    else:
-        math = Bracket()
-        math.append(_parse_from_str(s[1:-1]))
-        return math
+    if s.startswith('('):
+        for i, c in enumerate(s):
+            if c == '(':
+                lv += 1
+            elif c == ')':
+                lv -= 1
+            if i != len(s) - 1 and lv == 0:
+                break
+        else:
+            math = Bracket()
+            math.append(_parse_from_str(s[1:-1]))
+            return math
 
     # case: mathobj op mathobj ... format
     lv = 0
@@ -380,6 +383,8 @@ def _parse_from_str(s):
         math = func
         math.append(_parse_from_str(s[arg_start_index:]))
         return math
+
+    raise ValueError('mistake. input: {}'.format(s))
 
 
 def parse_from_str(s):

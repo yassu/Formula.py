@@ -398,3 +398,23 @@ def parse_from_str_test7():
     math10.append(math21)
     math10.append(math22)
     assert(parse_from_str('(1 +\t 1)') == math00)
+
+@raises(ValueError)
+def parse_from_str_test8():
+    parse_from_str('sin + sin')
+
+@raises(ValueError)
+def parse_from_str_test9():
+    parse_from_str('+ * +')
+
+@raises(ValueError)
+def parse_from_str_test10():
+    parse_from_str('abc(x)')
+
+@raises(ValueError)
+def parse_from_str_test11():
+    parse_from_str('1 + (1')
+
+@raises(ValueError)
+def parse_from_str_test12():
+    parse_from_str('1 + 1)')
