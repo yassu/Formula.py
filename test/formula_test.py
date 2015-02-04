@@ -33,7 +33,7 @@ class MathItemTest(TestCase):
     def after_test(self):
         math = MathItem(1)
         math2 = MathItem(2)
-        math._afters.append(math2)
+        math._children.append(math2)
         assert(math[0] == math2)
 
     def append_test(self):

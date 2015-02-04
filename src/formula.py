@@ -8,7 +8,7 @@ class MathItem(object):
     def __init__(self, data):
         self._data = data
         self._before = None
-        self._afters = []
+        self._children = []
 
     @property
     def data(self):
@@ -18,11 +18,15 @@ class MathItem(object):
     def before(self):
         return self._before
 
+    @property
+    def children(self):
+        return self._children
+
     def _set_before(self, before):
         self._before = before
 
     def append(self, after):
-        self._afters.append(after)
+        self._children.append(after)
         after._set_before(self)
 
     @staticmethod
@@ -30,16 +34,16 @@ class MathItem(object):
         pass
 
     def __getitem__(self, ind):
-        return self._afters[ind]
+        return self.children[ind]
 
     def __repr__(self):
-        return '{data}<{afters}>'.format(data=self._data, afters=self._afters)
+        return '{data}<{afters}>'.format(data=self._data, afters=self.children)
 
     def __eq__(self, other):
         if not (isinstance(other, self.__class__) and self.data == other.data):
             return False
 
-        return self._afters == other._afters
+        return self.children == other.children
 
 
 class Bracket(MathItem):
@@ -53,7 +57,7 @@ class Bracket(MathItem):
         return None
 
     def __str__(self):
-        child = self._afters[0]
+        child = self.children[0]
         return '({})'.format(str(child))
 
     def __repr__(self):
@@ -154,7 +158,7 @@ class AbstractFunction(MathItem):
         pass
 
     def __str__(self):
-        return '{}{}'.format(str(self._data), str(self._afters[0]))
+        return '{}{}'.format(str(self._data), str(self.children[0]))
 
     def __repr__(self):
         return super(AbstractFunction, self).__repr__()
@@ -238,9 +242,9 @@ class AbstractOperand(MathItem):
 
     def __str__(self):
         return '{} {} {}'.format(
-            str(self._afters[0]),
+            str(self.children[0]),
             str(self._data),
-            str(self._afters[1]))
+            str(self.children[1]))
 
     def __repr__(self):
         return super(AbstractOperand, self).__repr__()
