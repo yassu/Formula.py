@@ -289,35 +289,32 @@ def parse_from_str_test2():
     math1.append(math2)
     assert(parse_from_str('sin(1)') == math0)
 
-# def parse_from_str_test2():
-#     math = Plus()
-#     math.append(Number(1))
-#     math.append(Number(2))
-#     assert(parse_from_str('1 + 2') == math)
-#
-# def parse_from_str_test3():
-#     math = Plus()
-#     math.append(Number(1))
-#     math.append(Number(2))
-#     _math = parse_from_str('(1) + (2)')
-#     print(list(math))
-#     assert(parse_from_str('(1) + (2)') == math)
-#
+def parse_from_str_test5():
+    math00 = Plus()
+    math10 = Number(1)
+    math11 = Number(2)
+    math00.append(math10)
+    math00.append(math11)
+    assert(parse_from_str('1+2') == math00)
+
+def parse_from_str_test6():
+    math00 = Plus()
+    math10 = Number(1)
+    math11 = Product()
+    math20 = Number(2)
+    math21 = Number(3)
+    math00.append(math10)
+    math00.append(math11)
+    math11.append(math20)
+    math11.append(math21)
+    assert(parse_from_str('1+2*3') == math00)
+
 # def parse_from_str_test4():
-#     math = Plus()
-#     math.append(Number(1))
-#     math.append(Number(2))
-#     assert(parse_from_str('(1 + 2)') == math)
-#
-# def parse_from_str_test5():
-#     math00 = Power()
+#     math00 = Bracket()
 #     math10 = Plus()
-#     math11 = Number(5)
 #     math21 = Number(1)
 #     math22 = Number(2)
-#
 #     math00.append(math10)
-#     math00.append(math11)
 #     math10.append(math21)
 #     math10.append(math22)
-#     assert(parse_from_str('(1 + 2)^3') == math00)
+#     assert(parse_from_str('(1 + 1)') == math00)

@@ -1,5 +1,6 @@
 import math
 from re import compile as _re_compile
+from copy import deepcopy
 
 class MathItem(object):
     def __init__(self, data):
@@ -254,7 +255,7 @@ ALL_OPERANDS = (Plus(), Minus(), Product(), Divide(), Power())
 def get_operand(s):
     for ope in ALL_OPERANDS:
         if ope.isit(s):
-            return ope
+            return deepcopy(ope)
 
     return None
 
@@ -279,10 +280,30 @@ def parse_from_str(s):
     if mathitem is not None:
         return mathitem
 
+    # case: mathobj op mathobj ... format
+    lv = 0
+    opes = []   # list of (ope, ope_index)
+    for i, c in enumerate(s):
+        if c == '(':
+            lv += 1
+        elif c == ')':
+            lv -= 1
+        elif lv == 0 and get_operand(c) is not None:
+            ope = get_operand(c)
+            opes.append((ope, i))
+    if opes:
+        ope, ope_index = min(opes, key=lambda ope_a: ope_a[0].priority)
+        print('ope: {}'.format(ope))
+        math = ope
+        left = parse_from_str(s[:ope_index])
+        right = parse_from_str(s[ope_index + 1:])
+        math.append(left)
+        math.append(right)
+        return math
+
     # case: s is func(arg) format
     arg_start_index = s.find('(')
     func = get_function(s[:arg_start_index])
-    print(func)
     if arg_start_index != -1 and s.endswith(')') and func:
         math = func
         math1 = Bracket()
