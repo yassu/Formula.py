@@ -296,7 +296,7 @@ def _parse_from_str(s):
     if mathitem is not None:
         return mathitem
 
-    # case: (mathitem1 mathitem2 ... ) format
+    # case: (mathitems) format
     lv = 0
     for i, c in enumerate(s):
         if c == '(':
@@ -335,10 +335,7 @@ def _parse_from_str(s):
     func = get_function(s[:arg_start_index])
     if arg_start_index != -1 and s.endswith(')') and func:
         math = func
-        math1 = Bracket()
-        math2 = _parse_from_str(s[arg_start_index + 1: -1])
-        math.append(math1)
-        math1.append(math2)
+        math.append(_parse_from_str(s[arg_start_index:]))
         return math
 
 def parse_from_str(s):
