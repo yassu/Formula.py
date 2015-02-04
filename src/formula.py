@@ -52,9 +52,20 @@ class Bracket(MathItem):
         """ not create bracket object """
         return None
 
+    def __str__(self):
+        child = self._afters[0]
+        return '({})'.format(str(child))
+
+    def __repr__(self):
+        return super(Bracket, self).__repr__()
+
 
 class AbstractNumber(MathItem):
-    pass
+    def __str__(self):
+        return str(self._data)
+
+    def __repr__(self):
+        return super(AbstractNumber, self).__repr__()
 
 
 class Number(AbstractNumber):
@@ -90,6 +101,12 @@ class Pi(AbstractNumber):
         else:
             return None
 
+    def __str__(self):
+        return "pi"
+
+    def __repr__(self):
+        return super(Pi, self).__repr__()
+
 
 class E(AbstractNumber):
 
@@ -102,6 +119,12 @@ class E(AbstractNumber):
             return E()
         else:
             return None
+
+    def __str__(self):
+        return "e"
+
+    def __repr__(self):
+        return super(E, AbstractNumber).__repr__()
 
 ALL_NUMBERS = (Number, Variable, Pi, E)
 
@@ -128,6 +151,12 @@ class AbstractFunction(MathItem):
 
     def compute(self, x):
         pass
+
+    def __str__(self):
+        return '{}{}'.format(str(self._data), str(self._afters[0]))
+
+    def __repr__(self):
+        return super(AbstractFunction, self).__repr__()
 
 
 class Sin(AbstractFunction):
@@ -205,6 +234,15 @@ class AbstractOperand(MathItem):
     @property
     def priority(self):
         pass
+
+    def __str__(self):
+        return '{} {} {}'.format(
+                str(self._afters[0]),
+                str(self._data),
+                str(self._afters[1]))
+
+    def __repr__(self):
+        return super(AbstractOperand, self).__repr__()
 
 
 class Plus(AbstractOperand):

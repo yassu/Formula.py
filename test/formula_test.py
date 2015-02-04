@@ -44,13 +44,11 @@ class MathItemTest(TestCase):
         assert(math2.before == math)
 
     def repr_test(self):
-        math = MathItem(Sin())
-        math10 = MathItem(Cos())
-        math11 = MathItem(Tan())
-        math.append(math10)
-        math.append(math11)
+        math = Sin()
+        math1 = Variable('x')
+        math.append(math1)
 
-        assert(repr(math) == 'sin<[]><[cos<[]><[]>, tan<[]><[]>]>')
+        assert(repr(math) == 'sin<[x<[]>]>')
 
     def eq_test(self):
         math1 = MathItem(2)
@@ -82,6 +80,11 @@ class BracketItemTest(TestCase):
     def isit_test1(self):
         assert(Bracket.isit('()') is None)
 
+    def str_test(self):
+        math = Bracket()
+        math.append(Number(1))
+        assert(str(math) == '(1)')
+
 
 class NumberTest(TestCase):
 
@@ -95,6 +98,10 @@ class NumberTest(TestCase):
 
     def isit_test2(self):
         assert(Number.isit('ab') is None)
+
+    def str_test(self):
+        num = Number(12)
+        assert(str(num) == '12')
 
 
 class VariableTest(TestCase):
@@ -147,6 +154,10 @@ class AbstractFunctionTest(TestCase):
     @raises(FunctionDataLengthException)
     def create_exception_test(self):
         AbstractFunction('s')
+
+    def str_test(self):
+        math = parse_from_str('sin(pi)')
+        assert(str(math) == 'sin(pi)')
 
 
 class SinTest(TestCase):
@@ -214,6 +225,14 @@ class AbstractOperandTest(TestCase):
     @raises(OperandDataLengthException)
     def create_exception_test(self):
         AbstractOperand('**')
+
+    def str_test(self):
+        math = Plus()
+        math10 = Number(1)
+        math11 = Number(2)
+        math.append(math10)
+        math.append(math11)
+        assert(str(math) == '1 + 2')
 
 
 class PlusTest(TestCase):
