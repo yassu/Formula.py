@@ -5,10 +5,12 @@ from formula import (
         Bracket,
         AbstractNumber, Number, Variable, Pi, E, get_number,
         AbstractFunction, Sin, Cos, Tan, get_function,
+            FunctionDataLengthException,
         AbstractOperand, Plus, Minus, Product, Divide, Power, get_operand,
         get_mathitem,
     )
 from unittest import TestCase
+from nose.tools import raises
 import math
 
 
@@ -126,11 +128,9 @@ def get_number_test2():
     assert(get_number('12') == Number(12))
 
 class AbstractFunctionTest(TestCase):
-    """ todo:
-    @raise.test
+    @raises(FunctionDataLengthException)
     def create_exception_test(self):
         AbstractFunction('s')
-    """
 
 class SinTest(TestCase):
     def create_test(self):
