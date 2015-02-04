@@ -103,7 +103,7 @@ class Pi(AbstractNumber):
             return None
 
     def __str__(self):
-        return "pi"
+        return "\u03c0"
 
     def __repr__(self):
         return super(Pi, self).__repr__()
