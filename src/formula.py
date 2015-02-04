@@ -61,6 +61,7 @@ class Bracket(MathItem):
 
 
 class AbstractNumber(MathItem):
+
     def __str__(self):
         return str(self._data)
 
@@ -237,9 +238,9 @@ class AbstractOperand(MathItem):
 
     def __str__(self):
         return '{} {} {}'.format(
-                str(self._afters[0]),
-                str(self._data),
-                str(self._afters[1]))
+            str(self._afters[0]),
+            str(self._data),
+            str(self._afters[1]))
 
     def __repr__(self):
         return super(AbstractOperand, self).__repr__()

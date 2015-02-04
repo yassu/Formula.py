@@ -310,6 +310,24 @@ class DivideTest(TestCase):
     def priority_test(self):
         assert(Divide().priority == 6)
 
+    def str_test(self):
+        math = Divide()
+        math.append(Number(1))
+        math.append(Number(2))
+        assert(str(math) == '1 / 2')
+
+    def str_test2(self):
+        math = Divide()
+        math10 = Sin()
+        math20 = Bracket()
+        math30 = Variable('x')
+        math11 = Number(2)
+        math.append(math10)
+        math10.append(math20)
+        math20.append(math30)
+        math.append(math11)
+        assert(str(math) == 'sin(x) / 2')
+
 
 class PowerTest(TestCase):
 
@@ -418,21 +436,26 @@ def parse_from_str_test7():
     math10.append(math22)
     assert(parse_from_str('(1 +\t 1)') == math00)
 
+
 @raises(ValueError)
 def parse_from_str_test8():
     parse_from_str('sin + sin')
+
 
 @raises(ValueError)
 def parse_from_str_test9():
     parse_from_str('+ * +')
 
+
 @raises(ValueError)
 def parse_from_str_test10():
     parse_from_str('abc(x)')
 
+
 @raises(ValueError)
 def parse_from_str_test11():
     parse_from_str('1 + (1')
+
 
 @raises(ValueError)
 def parse_from_str_test12():
